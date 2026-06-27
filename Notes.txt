@@ -45,14 +45,26 @@ git branch                    # List branches
 git checkout <branch>         # Switch branches
 
 
-# 1. Stage the changes (gather your edits into the prep zone)
+Connect to Repositry :
+1.
+suppose a folder is made on computer or else make dir 
+2.
+# Initialize Git in this folder
+git init
+# Add all your existing files to be tracked
 git add .
+# Commit them with a message
+git commit -m "Initial commit of existing project"
+# Rename the default branch to 'main' (GitHub's standard)
+git branch -M main
+3.
+ make a repository 
+4.
+copy the url 
+5.
+# Link your local folder to GitHub (Replace with YOUR actual GitHub URL)
+git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
 
-# 2. Re-commit (create a brand new snapshot in your local history)
-git commit -m "Update styling and add new section"
-
-#3.  git push
-
-obaidullah
-
+# Push your files up to GitHub
+git push -u origin main
 
