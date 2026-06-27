@@ -33,10 +33,25 @@ powershell commands
 13 head [file_name]      Shows  first 10 lines of a file.
 14 tail [file_name]      Shows  last 10 lines of a file
 
+SSH PASSKEY>>>> obaidullah
 
 
+GITHUB 
+git clone <repository-url>    # Download a repository
+git status                    # Check changed files
+git pull                      # Get latest changes from remote
+git log                       # View commit history
+git branch                    # List branches
+git checkout <branch>         # Switch branches
 
 
+# 1. Stage the changes (gather your edits into the prep zone)
+git add .
+
+# 2. Re-commit (create a brand new snapshot in your local history)
+git commit -m "Update styling and add new section"
+
+#3.  git push
 
 
 
