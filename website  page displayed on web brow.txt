@@ -1,0 +1,42 @@
+website : page displayed on web browser (written in html)
+web server : computer that hosts a website on the Internet
+website: collection of web pages in one 
+web service : software that responds to internet requests, backed by web server > also provide web pages , includes websites 
+
+Search engine: web service that helps you find other web pages, acesseed using web browser
+
+ web page: refers to HTML documents
+
+
+clint : connect to internet and collect data e.g phone computer laptop vaccume 
+server : accept req from clint and give data e.g give html page , image , file  
+
+cd shell-lesson-data
+
+powershell commands 
+0 pwd                  (Print Working Directory)
+1  ls                  display the files 
+2 cd [folder_name]     go in the file 
+3 cd ..                (Move Up/Back)]
+4 cd ~                 (Go Home)
+5 mkdir [folder_name]    (Make Directory)  Creates a brand new, empty folder
+6 touch [file_name.txt]                  What it does: Creates a blank, empty file.
+7 cp [source] [destination] (Copy from one file to destination )
+8 mv [source] [destination] (Move / Rename if you choose the destination )
+9 rm [file_name] (permanently Remove the file )
+10 rm -r [folder_name] (Remove Recursive) delete the entire folder and everything inside it 
+   
+
+  LOOKING INSIDE FILE 
+11 cat [file_name]     (Concatenate)  show all the content in the file on screen
+12 less [file_name]    Opens a file , scroll through it using your arrow keys, q exit back to terminal.
+13 head [file_name]      Shows  first 10 lines of a file.
+14 tail [file_name]      Shows  last 10 lines of a file
+
+
+
+
+
+
+
+
