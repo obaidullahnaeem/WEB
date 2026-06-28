@@ -52,9 +52,9 @@ suppose a folder is made on computer or else make dir
 # Initialize Git in this folder
 git init
 # Add all your existing files to be tracked
-git add .
+git add .       ### to change all 
 # Commit them with a message
-git commit -m "Initial commit of existing project"
+git commit -m "Initial commit of existing project"/ what you changed
 # Rename the default branch to 'main' (GitHub's standard)
 git branch -M main
 3.
@@ -69,3 +69,23 @@ git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
 git push -u origin main
 
 obaidullah 
+
+Start of HTML AND CSS:
+ All the text, links, cards, lists, and buttons are created in HTML. 
+ HTML puts information on a webpage, and CSS positions that information, gives it color, changes the font, and makes it look great!
+ CSS is what adds style to those plain elements.
+
+              HEAFINGS
+ <h1> tells the browser: "Start a main heading here."
+</h1> tells the browser: "The heading ends here."
+              TAGS
+starts paragraph <p> 
+ </p>   ends it.
+
+images                 <img>
+line breaks            <br>
+
+
+           ELEMENTS
+element is a complete package of :           
+{Opening Tag} + {Content} + {Closing Tag} = {Element}
