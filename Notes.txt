@@ -89,3 +89,16 @@ line breaks            <br>
            ELEMENTS
 element is a complete package of :           
 {Opening Tag} + {Content} + {Closing Tag} = {Element}
+
+
+doctype for HTML5 file is <!DOCTYPE html>
+
+     "HEAD" 
+head is the invisible part of webpage 
+to talk to the browser only 
+    <head>
+      <meta charset="UTF-8"> 
+      <title>
+            My First Web Page 
+            </title>
+        </head>
