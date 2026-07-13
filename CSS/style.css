@@ -1,0 +1,17 @@
+/* intro to css  */
+
+/* Selectors  ; HTML elements to which CSS rules apply */
+/* 
+The dot (.) tells CSS to look for the class named "cool-text" */
+    /* .cool-text {
+        color: darkblue;          /* Changes the text color to dark blue */
+        font-size: 20px;          /* Makes the text larger */
+        font-family: sans-serif;  /* Changes the font style to clean lettering */
+        line-height: 1.5;         /* Adds some breathing room between lines */   
+
+/*
+
+
+.alert-text {
+  color: red;
+}
