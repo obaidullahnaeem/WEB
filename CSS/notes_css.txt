@@ -1,0 +1,26 @@
+Method	Where the CSS is written
+1. Inline CSS	Inside the HTML element (style="")
+2. Internal CSS ✅	Inside the <style> tag in the <head>
+3. External CSS	In a separate .css file
+
+
+Internal CSS
+
+    selector {
+        property: value;
+        property: value;
+    }
+
+    CODE
+        <style>
+        div {
+            color: pink;
+            background-color: yellow;
+        }
+
+        p {
+            color: red;
+            font-size: 20.9px;
+        }
+        </style>
+

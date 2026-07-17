@@ -1,0 +1,33 @@
+Class selectors (.)
+        .btn {
+            color: blue;
+        }
+            <button class="btn">Save</button>
+            <button class="btn">Delete</button>
+
+ID selectors (#)
+    #header {
+    color: red;
+}
+        <h1 id="header">Welcome</h1>
+
+Chaining selectors (without space)
+    .class.second-class {
+    color: blue;
+}
+            <div class="class second-class"></div>
+
+Descendent combinators(space btw them )
+    <div class="class">
+    <p class="second-class"></p>
+</div>
+            .class .second-class {
+            color: blue;
+    }
+
+Type selector (name of element)
+    <p>Hello</p>
+    <p>World</p>
+            p {
+            color: blue;
+}
