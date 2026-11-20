@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportsly | FCCU Court Booking Grid (Chunk 2)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar (Shared Component via renderSharedNavbar) -->
+  <header class="fccu-navbar">
+    <div class="navbar-container">
+      <!-- Injected dynamically by js/data.js -->
+    </div>
+  </header>
+
+  <!-- Main Page Container -->
+  <main class="page-container">
+    
+    <!-- Header Controls & Sport Filter Tabs -->
+    <div class="booking-header-bar">
+      <div>
+        <h2 style="font-size: 1.45rem; color: var(--fccu-navy); font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+          <span>📅</span> 60-Minute Court Booking Grid
+        </h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
+          Reserve official campus courts on a first-come, first-served basis &bull; Max 3 hrs/week quota
+        </p>
+      </div>
+
+      <!-- Sport Filter Tabs: Badminton, Table Tennis, Lawn Tennis -->
+      <div class="sport-tabs-container" id="sportTabsContainer">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+
+    <!-- Active Warning Notice (e.g. Ghost booking penalty) -->
+    <div id="noShowStatusNotice"></div>
+
+    <!-- Quota & Simulation Toolbar -->
+    <div class="booking-quota-banner">
+      <div class="quota-stats-wrap">
+        <span class="quota-pill available" id="quotaPill">
+          <span>⏱️</span> <strong>2/3 Weekly Hours Remaining</strong>
+        </span>
+        <span style="font-size: 0.82rem; color: var(--text-secondary);">
+          Target Facility: <strong id="facilityNotice" style="color: var(--fccu-navy);">Gymnasium Courts 1 - 4</strong>
+        </span>
+      </div>
+
+      <!-- Evaluator Ghost Booking Simulator Actions -->
+      <div class="simulation-actions">
+        <span style="font-size: 0.78rem; font-weight: 700; color: #92400e;">Demo Controls:</span>
+        <button type="button" class="btn-ghost-sim" id="btnGhostSim" title="Test warning on 1st offense & ban on 2nd offense">
+          <span>⚠️</span> Simulate No-Show (Ghost Booking)
+        </button>
+        <button type="button" class="btn-ghost-reset" id="btnGhostReset" title="Reset violations">
+          Reset Record
+        </button>
+      </div>
+    </div>
+
+    <!-- Interactive Court Booking Grid Card -->
+    <section class="court-grid-card">
+      
+      <!-- UML State Diagram Legend -->
+      <div class="grid-legend">
+        <span style="font-weight: 700; color: var(--fccu-navy);">UML Court States:</span>
+        <div class="legend-item">
+          <span class="badge-state badge-open">● Open</span>
+          <span>Available to reserve (Deducts 1 hr)</span>
+        </div>
+        <div class="legend-item">
+          <span class="badge-state badge-booked">● Booked</span>
+          <span>Occupied by FCCU student</span>
+        </div>
+        <div class="legend-item">
+          <span class="badge-state badge-locked">🔒 Locked</span>
+          <span>Restricted for Varsity / Societies / Maintenance</span>
+        </div>
+      </div>
+
+      <!-- 60-Minute Schedule Grid -->
+      <div style="overflow-x: auto;">
+        <table class="slots-table" id="courtSlotsTable">
+          <thead>
+            <tr id="tableHeaderRow">
+              <th class="time-col-header">Time Interval</th>
+              <!-- Court columns injected dynamically -->
+            </tr>
+          </thead>
+          <tbody id="slotsTableBody">
+            <!-- 60-minute interval rows injected dynamically -->
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Floating Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- University Footer -->
+  <footer class="fccu-footer">
+    <div class="footer-content">
+      <span><a href="https://www.fccollege.edu.pk" target="_blank" rel="noopener noreferrer" class="footer-link">&copy; 2026 Forman Christian College (A Chartered University)</a></span>
+      <span>Sportsly Intramural Platform &bull; Chunk 2 Court Booking Module</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

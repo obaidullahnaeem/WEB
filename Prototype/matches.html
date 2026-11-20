@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportsly | Dual Score Confirmation & Public Leaderboard (Chunk 2)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar (Shared via renderSharedNavbar) -->
+  <header class="fccu-navbar">
+    <div class="navbar-container">
+      <!-- Injected dynamically -->
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="page-container">
+    <div class="matches-container">
+
+      <!-- ====================================================================
+           Top Section: My Matches & Dual Score Confirmation
+           ==================================================================== -->
+      <section class="matches-section-card">
+        
+        <div class="section-head-bar">
+          <div>
+            <h2>
+              <span>⚔️</span> My Matches & Dual Score Confirmation
+            </h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
+              Submit match results. When both athletes submit matching scores, ratings update automatically.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn-demo-pill" id="btnAddSampleMatch">
+              <span>➕</span> Add Sample Match
+            </button>
+            <button type="button" class="btn-demo-pill" id="btnResetMatches">
+              <span>🔄</span> Reset Matches
+            </button>
+          </div>
+        </div>
+
+        <!-- Matches Cards List -->
+        <div class="match-list-grid" id="matchesListContainer">
+          <!-- Populated dynamically via js/matches.js -->
+        </div>
+
+      </section>
+
+      <!-- ====================================================================
+           Bottom Section: Public Campus Elo Leaderboard
+           ==================================================================== -->
+      <section class="matches-section-card">
+        
+        <div class="section-head-bar">
+          <div>
+            <h2>
+              <span>🏆</span> Public Campus Elo Leaderboard
+            </h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
+              Official Forman Christian College University competitive intramural ladder rankings.
+            </p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="stat-pill" id="leaderboardPlayerCount" style="background:#e2e8f0; color:var(--fccu-navy); font-weight:700;">
+              21 Athletes Ranked
+            </span>
+          </div>
+        </div>
+
+        <!-- Privacy Assurance Banner -->
+        <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-md); padding: 0.75rem 1rem; margin-bottom: 1.25rem; font-size: 0.82rem; color: #1e3a8a; display: flex; align-items: center; gap: 0.5rem;">
+          <span>🔒</span>
+          <div>
+            <strong>FCCU Privacy Policy Enforced:</strong> National CNIC, Academic CGPA, and Disciplinary Records are strictly private and hidden from public student views. Only verified athletic records are shown.
+          </div>
+        </div>
+
+        <!-- Leaderboard Sport Tabs Filter -->
+        <div class="leaderboard-filters-bar">
+          <div class="sport-tabs-container" id="leaderboardSportTabs">
+            <!-- Dynamically populated with All, Badminton, Table Tennis, Lawn Tennis -->
+          </div>
+        </div>
+
+        <!-- Leaderboard Table -->
+        <div class="leaderboard-table-wrap">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th style="width: 80px;">Rank #</th>
+                <th>Athlete Name</th>
+                <th>Roll No</th>
+                <th>Sport Discipline</th>
+                <th>Elo Rating</th>
+                <th>Intramural Record</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Floating Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- University Footer -->
+  <footer class="fccu-footer">
+    <div class="footer-content">
+      <span><a href="https://www.fccollege.edu.pk" target="_blank" rel="noopener noreferrer" class="footer-link">&copy; 2026 Forman Christian College (A Chartered University)</a></span>
+      <span>Sportsly Intramural Platform &bull; Chunk 2 Dual Score & Leaderboard Module</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/matches.js"></script>
+</body>
+</html>
+

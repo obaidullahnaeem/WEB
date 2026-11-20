@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportsly | FCCU Student Dashboard & Matchmaking</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation & Student Header Bar -->
+  <header class="fccu-navbar">
+    <div class="navbar-container">
+      
+      <!-- Brand & University Crest -->
+      <div class="brand-section">
+        <a href="dashboard.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
+          <div class="brand-crest">FC</div>
+          <div class="brand-info">
+            <h1>Sportsly <span class="brand-badge">FCCU</span></h1>
+            <span class="brand-subtitle">Forman Christian College &bull; Athletics Directorate</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Tabs across Chunks 1, 2, and 3 -->
+      <nav class="fccu-nav-tabs">
+        <a href="dashboard.html" class="nav-tab-link active">
+          <span>🏸</span> Matchmaking
+        </a>
+        <a href="booking.html" class="nav-tab-link">
+          <span>📅</span> Court Booking
+        </a>
+        <a href="matches.html" class="nav-tab-link">
+          <span>🏆</span> Scores &amp; Ladder
+        </a>
+        <a href="admin.html" class="nav-tab-link">
+          <span>🛡️</span> Coach / Admin <span class="nav-badge-tag">Staff</span>
+        </a>
+      </nav>
+
+      <!-- Top Bar: Student Name, Roll No, Elo 1000, Weekly Booking Hours (2/3 hrs left) -->
+      <div class="user-bar-profile">
+        
+        <!-- Elo Rating Pill -->
+        <span class="stat-pill elo-badge" id="userEloPill" title="Your initial baseline rating">
+          <span class="icon">🏆</span> Elo: <strong>1000</strong>
+        </span>
+
+        <!-- Weekly Booking Hours Remaining (2/3 hrs left) -->
+        <span class="stat-pill hours-badge" id="userHoursPill" title="Intramural court quota remaining this week">
+          <span class="icon">⏱️</span> <strong>2/3 hrs left</strong>
+        </span>
+
+        <!-- Student Profile Identity -->
+        <div class="user-identity">
+          <div class="avatar-circle" id="userAvatarCircle">MB</div>
+          <div class="user-text-info">
+            <div class="user-name-title" id="userDisplayName">Muhammad Bilal</div>
+            <div class="user-roll-subtitle" id="userRollNumber">Roll No: 251084912</div>
+          </div>
+        </div>
+
+        <!-- Logout / Switch Account -->
+        <button type="button" class="btn-logout" id="btnLogout" title="Switch profile or return to login">
+          Logout
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Dashboard Content -->
+  <main class="page-container">
+    <div class="dashboard-grid">
+
+      <!-- ====================================================================
+           Left Column: Availability Panel
+           ==================================================================== -->
+      <aside class="availability-panel">
+        
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">
+              <span>⚙️</span> Availability Panel
+            </h2>
+            <p class="panel-sub">Manage your campus sports presence</p>
+          </div>
+        </div>
+
+        <!-- Sport Selector Dropdown -->
+        <div class="sport-selector-box">
+          <label for="sportSelect" class="form-label">
+            Active Sport Discipline
+          </label>
+          <select id="sportSelect" class="sport-select-input">
+            <option value="Badminton">Badminton (Gymnasium Courts 1-4)</option>
+            <option value="Table Tennis">Table Tennis (Student Center)</option>
+            <option value="Lawn Tennis">Lawn Tennis (Outer Hard Courts)</option>
+          </select>
+          <div class="form-helper">Select the sport you want to find opponents for.</div>
+        </div>
+
+        <!-- "Play Now" Live Toggle Switch -->
+        <div class="play-now-card" id="playNowCard">
+          <div class="toggle-row">
+            <div class="toggle-label-wrap">
+              <span class="toggle-title">
+                <span class="status-dot"></span>
+                Play Now Status
+              </span>
+              <span class="toggle-desc" id="playNowStatusText">
+                Offline / Scheduled Intramural Matches Only
+              </span>
+            </div>
+
+            <!-- Toggle Switch Control -->
+            <label class="switch" for="playNowToggle">
+              <input type="checkbox" id="playNowToggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Weekly Free Time Slots Checklist -->
+        <div class="slots-container">
+          <div class="slots-header">
+            <span class="slots-title">Weekly Free Time Slots</span>
+            <div>
+              <button type="button" class="btn-link-action" id="btnSelectAllSlots">Select All</button>
+              <span style="color: var(--border-medium); margin: 0 0.25rem;">|</span>
+              <button type="button" class="btn-link-action" id="btnClearAllSlots">Clear</button>
+            </div>
+          </div>
+
+          <div class="slots-grid" id="slotsContainer">
+            <!-- Dynamically populated from DEFAULT_WEEKLY_SLOTS -->
+          </div>
+
+          <div class="availability-sync-tag" id="syncStatusIndicator">
+            <span>✓</span> Preferences automatically saved to local profile
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- ====================================================================
+           Right Column: Matchmaking Section
+           ==================================================================== -->
+      <section class="matchmaking-section">
+        
+        <!-- Controls Bar -->
+        <div class="matchmaking-controls-bar">
+          <div class="controls-heading">
+            <h2>Campus Skill Matchmaking</h2>
+            <p>Discover FCCU opponents matched by competitive Elo rating.</p>
+          </div>
+
+          <div class="actions-cluster">
+            <!-- "Find Opponent" Button -->
+            <button type="button" class="btn-find-opponents" id="btnFindOpponent">
+              <span>🎯</span> Find Opponents
+            </button>
+
+            <!-- "Expand Range (±250 Elo)" Button -->
+            <button type="button" class="btn-expand-range" id="btnExpandRange">
+              <span>⚡</span> Expand Range (±250 Elo)
+            </button>
+          </div>
+        </div>
+
+        <!-- Skill Range & Privacy Status Bar -->
+        <div class="range-status-bar">
+          <div class="bracket-indicator">
+            <span class="bracket-badge" id="bracketBadge">Standard Bracket (±150 Elo)</span>
+            <span id="bracketRangeValues" style="color: var(--text-secondary); font-size: 0.82rem; font-weight: 600;">
+              Elo 850 - 1150 | Sport: Badminton
+            </span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap;">
+            <span class="privacy-notice-badge" title="Academic and government records are strictly kept confidential">
+              <span>🔒</span> CNIC & CGPA Protected
+            </span>
+            <span class="stat-pill" id="opponentCountBadge" style="background: #e2e8f0; color: var(--fccu-navy); font-weight: 700; font-size: 0.76rem;">
+              4 Players Available
+            </span>
+          </div>
+        </div>
+
+        <!-- Opponent Cards Grid -->
+        <!-- Privacy Rule: Displays ONLY Name, Sport, Elo Rank, and Recent Win/Loss record -->
+        <div class="opponents-grid" id="opponentsGrid">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       Pre-Match Chat Popup Modal
+       ======================================================================== -->
+  <div class="modal-backdrop hidden" id="chatModal" role="dialog" aria-modal="true">
+    <div class="chat-modal-window">
+      
+      <!-- Modal Header -->
+      <div class="chat-modal-header">
+        <div class="chat-header-user">
+          <div class="chat-avatar" id="chatAvatar">HT</div>
+          <div class="chat-header-text">
+            <h3 id="chatOpponentName">Hamza Tariq</h3>
+            <p id="chatOpponentDetails">FCCU Intramural Player &bull; Badminton</p>
+          </div>
+        </div>
+        <button type="button" class="btn-close-modal" id="btnCloseChat" aria-label="Close Chat">&times;</button>
+      </div>
+
+      <!-- Match Summary Banner inside Chat -->
+      <div class="chat-match-summary">
+        <div>
+          <span>Selected Sport:</span>
+          <strong id="chatSummarySport">Badminton</strong>
+        </div>
+        <div class="stat-chip" id="chatSummaryElo">
+          Elo: 1020
+        </div>
+      </div>
+
+      <!-- Message History Stream -->
+      <div class="chat-messages-container" id="chatMessagesList">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Quick Reply Prompt Chips -->
+      <div class="chat-quick-chips" id="quickChipsContainer">
+        <!-- Quick replies dynamically generated -->
+      </div>
+
+      <!-- Message Input Bar -->
+      <div class="chat-input-bar">
+        <input 
+          type="text" 
+          class="chat-text-input" 
+          id="chatInput" 
+          placeholder="Send a pre-match invite or suggest a court slot..." 
+        />
+        <button type="button" class="btn-send-chat" id="btnSendChat">
+          Send
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Floating Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- University Footer -->
+  <footer class="fccu-footer">
+    <div class="footer-content">
+      <span><a href="https://www.fccollege.edu.pk" target="_blank" rel="noopener noreferrer" class="footer-link">&copy; 2026 Forman Christian College (A Chartered University)</a>. All Rights Reserved.</span>
+      <span>Sportsly Intramural Platform &bull; FCCU Sports Complex</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
+

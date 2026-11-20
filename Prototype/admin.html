@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportsly | Coach &amp; Directorate Admin Command Center (Chunk 3)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar (Shared via renderSharedNavbar) -->
+  <header class="fccu-navbar">
+    <div class="navbar-container">
+      <!-- Injected dynamically by js/data.js -->
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="page-container">
+    
+    <!-- Admin Header Banner -->
+    <div class="booking-header-bar" style="border-left: 5px solid var(--fccu-accent-gold);">
+      <div>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+          <h2 style="font-size: 1.45rem; color: var(--fccu-navy); font-weight: 700; margin: 0;">
+            🛡️ Directorate of Athletics &amp; Coach Portal
+          </h2>
+          <span class="admin-header-badge">Staff Authorized</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+          Forman Christian College (A Chartered University) &bull; Sports Complex Management System
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <span class="stat-pill" style="background:#fef3c7; color:#92400e; font-weight:700; border-color:#fcd34d;">
+          Staff: Head of Sports &bull; Coach View
+        </span>
+      </div>
+    </div>
+
+    <!-- 4 Interactive Admin Tabs Navigation -->
+    <nav class="admin-nav-bar" role="tablist">
+      <button type="button" class="btn-admin-tab active" data-tab="tab-courts" role="tab">
+        <span>🛑</span> Tab 1: Court Blocking &amp; Overrides
+      </button>
+      <button type="button" class="btn-admin-tab" data-tab="tab-disputes" role="tab">
+        <span>⚖️</span> Tab 2: Flagged Dispute Queue <span class="nav-badge-tag" id="disputeCountBadge" style="background:#fee2e2; color:#b91c1c;">1 Dispute</span>
+      </button>
+      <button type="button" class="btn-admin-tab" data-tab="tab-roster" role="tab">
+        <span>📋</span> Tab 3: Restricted Roster &amp; Elo
+      </button>
+      <button type="button" class="btn-admin-tab" data-tab="tab-brackets" role="tab">
+        <span>🏆</span> Tab 4: Tournament Brackets &amp; Reports
+      </button>
+    </nav>
+
+    <!-- ====================================================================
+         TAB 1: Court Blocking & Override Controls
+         ==================================================================== -->
+    <section class="admin-tab-content active" id="tab-courts">
+      <div class="admin-card-box">
+        <div class="section-head-bar">
+          <div>
+            <h3>Administrative Court Lock &amp; Override</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">
+              Reserve courts for varsity training, female-only slots, society tournaments, or maintenance up to 3 weeks ahead.
+            </p>
+          </div>
+        </div>
+
+        <!-- Lock Court Form -->
+        <div class="admin-form-grid">
+          <div class="form-group">
+            <label class="form-label" for="adminSportSelect">Sport Discipline</label>
+            <select class="form-input" id="adminSportSelect">
+              <option value="Badminton">Badminton (Gymnasium)</option>
+              <option value="Table Tennis">Table Tennis (Student Center)</option>
+              <option value="Lawn Tennis">Lawn Tennis (Outer Hard Courts)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adminCourtSelect">Court / Facility Target</label>
+            <select class="form-input" id="adminCourtSelect">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adminDateSelect">Date Range (1 to 3 Weeks Ahead)</label>
+            <select class="form-input" id="adminDateSelect">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adminTimeSelect">60-Minute Time Slot</label>
+            <select class="form-input" id="adminTimeSelect">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adminLockCategory">Administrative Lock Category</label>
+            <select class="form-input" id="adminLockCategory">
+              <option value="Team Practice">Team Practice (Varsity Squad)</option>
+              <option value="Society Tournament">Society Tournament (FCCU Cup)</option>
+              <option value="Female-Only">Female-Only Dedicated Hours</option>
+              <option value="Maintenance">Court Maintenance &amp; Cleaning</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="button" class="btn-admin-primary" id="btnLockCourt">
+          <span>🔒</span> Lock Court (Check &amp; Override Casual Bookings)
+        </button>
+      </div>
+
+      <!-- Currently Locked Courts List -->
+      <div class="admin-card-box">
+        <h4 style="font-size:1.1rem; color:var(--fccu-navy); margin-bottom:0.75rem;">
+          Currently Active Administrative Locks
+        </h4>
+        <div id="lockedCourtsList">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 2: Flagged Score Dispute Queue
+         ==================================================================== -->
+    <section class="admin-tab-content" id="tab-disputes">
+      <div class="admin-card-box">
+        <div class="section-head-bar">
+          <div>
+            <h3>Flagged Score Dispute Arbitration Queue</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">
+              Matches where athletes submitted conflicting outcomes (e.g. both claimed Win). Held with Zero Elo deduction pending admin resolution.
+            </p>
+          </div>
+
+          <div>
+            <button type="button" class="btn-demo-pill" id="btnSimulateDispute">
+              <span>⚡</span> Simulate Score Dispute
+            </button>
+          </div>
+        </div>
+
+        <div id="disputeQueueList">
+          <!-- Populated dynamically via js/admin.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 3: Student Roster & Manual Elo Adjustment (Restricted Coach View)
+         ==================================================================== -->
+    <section class="admin-tab-content" id="tab-roster">
+      <div class="admin-card-box">
+        <div class="section-head-bar">
+          <div>
+            <h3>Restricted Student Athlete Database</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">
+              Official roster containing confidential records (CNIC, Contact, CGPA, Disciplinary Holds) hidden from student views.
+            </p>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <span class="restricted-pill">Restricted Access &bull; FERPA &amp; FCCU Privacy Shield</span>
+            <span class="stat-pill" id="rosterTotalCount" style="background:#e2e8f0; color:var(--fccu-navy); font-weight:700;">
+              21 Students
+            </span>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div style="margin-bottom: 1.25rem;">
+          <input 
+            type="text" 
+            class="form-input" 
+            id="rosterSearchInput" 
+            placeholder="Search by student name, roll number, sport, or CNIC..." 
+            style="max-width: 480px;"
+          />
+        </div>
+
+        <!-- Restricted Table -->
+        <div class="leaderboard-table-wrap">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Student Athlete</th>
+                <th>Roll No</th>
+                <th style="color:#991b1b;">CNIC (Confidential)</th>
+                <th>Contact</th>
+                <th>CGPA</th>
+                <th>Enrollment</th>
+                <th>Disciplinary Hold</th>
+                <th>Current Elo (Adjust)</th>
+                <th>Varsity Trials</th>
+              </tr>
+            </thead>
+            <tbody id="rosterTableBody">
+              <!-- Populated dynamically via js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 4: Elo Tournament Bracket Generator & Usage Reports
+         ==================================================================== -->
+    <section class="admin-tab-content" id="tab-brackets">
+      
+      <!-- Usage & Utilization KPI Cards -->
+      <div class="kpi-metrics-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Weekly Utilization</div>
+          <div class="kpi-val">78.4%</div>
+          <div class="kpi-sub">↑ 4.2% vs previous intramural week</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Monthly Court Utilization</div>
+          <div class="kpi-val">84.1%</div>
+          <div class="kpi-sub">Overall Sports Complex Capacity</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Most Used Court</div>
+          <div class="kpi-val" style="font-size:1.15rem; color:#0369a1;">Badminton Court 1</div>
+          <div class="kpi-sub">Glass Front Arena &bull; 92% booked</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Least Used Court</div>
+          <div class="kpi-val" style="font-size:1.15rem; color:#b45309;">Lawn Tennis Court 2</div>
+          <div class="kpi-sub">Outer Practice Court &bull; 45% booked</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Top Elo Climber</div>
+          <div class="kpi-val" style="font-size:1.15rem; color:#15803d;">Usman Rafique</div>
+          <div class="kpi-sub">1420 Elo (+180 pts this term)</div>
+        </div>
+      </div>
+
+      <!-- Tournament Bracket Generator Card -->
+      <div class="admin-card-box">
+        <div class="section-head-bar">
+          <div>
+            <h3>Seeded Intramural Tournament Bracket Generator</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">
+              Automatically sorts registered FCCU athletes by Elo rating to generate balanced Round 1 matchups, preventing beginners from facing top-ranked varsity athletes.
+            </p>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:0.65rem; flex-wrap:wrap;">
+            <select class="sport-select-input" id="bracketSportSelect" style="width: auto; padding: 0.5rem 2rem 0.5rem 0.75rem; font-size:0.85rem;">
+              <option value="Badminton">Badminton</option>
+              <option value="Table Tennis">Table Tennis</option>
+              <option value="Lawn Tennis">Lawn Tennis</option>
+            </select>
+            <button type="button" class="btn-primary" id="btnGenerateBracket" style="width:auto; padding:0.55rem 1.25rem; font-size:0.85rem;">
+              <span>⚡</span> Generate Seeded Bracket
+            </button>
+          </div>
+        </div>
+
+        <!-- Visual Bracket Tree Container -->
+        <div class="bracket-tree-container" id="bracketTreeContainer">
+          <!-- Populated dynamically via js/admin.js -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Floating Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- University Footer -->
+  <footer class="fccu-footer">
+    <div class="footer-content">
+      <span><a href="https://www.fccollege.edu.pk" target="_blank" rel="noopener noreferrer" class="footer-link">&copy; 2026 Forman Christian College (A Chartered University)</a></span>
+      <span>Sportsly Intramural Platform &bull; Chunk 3 Directorate Admin Module</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
+
