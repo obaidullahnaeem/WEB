@@ -2584,3 +2584,127 @@ input:checked + .slider:before {
   color: var(--fccu-navy);
   font-weight: 600;
 }
+
+
+/* ==========================================================================
+   Forman Christian College University - Production System Refactoring Styles
+   ========================================================================== */
+
+.footer-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--fccu-accent-gold);
+}
+
+.btn-footer-reset {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  cursor: pointer;
+  margin-left: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.btn-footer-reset:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.system-notice-banner {
+  background: #eff6ff;
+  border: 1px solid #93c5fd;
+  border-left: 5px solid #2563eb;
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: #1e3a8a;
+  font-size: 0.88rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.system-notice-banner .banner-icon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.masked-data {
+  background: #f1f5f9;
+  color: #64748b;
+  font-style: italic;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  border: 1px dashed #cbd5e1;
+}
+
+.staff-session-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 0.82rem;
+}
+
+.staff-view-notice {
+  background: #f8fafc;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.admin-policy-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  align-items: end;
+  margin-top: 0.75rem;
+}
+
+.reason-note-text {
+  font-size: 0.72rem;
+  color: #0369a1;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+.brand-badge-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-badge-link:hover {
+  filter: brightness(1.1);
+}

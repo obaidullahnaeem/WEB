@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sportsly | FCCU Student Dashboard & Matchmaking</title>
+  <title>Sportsly | FCCU Student Dashboard &amp; Matchmaking</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -17,13 +17,13 @@
         <a href="dashboard.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 0.75rem;">
           <div class="brand-crest">FC</div>
           <div class="brand-info">
-            <h1>Sportsly <span class="brand-badge">FCCU</span></h1>
-            <span class="brand-subtitle">Forman Christian College &bull; Athletics Directorate</span>
+            <h1>Sportsly <a href="https://mysis-fccollege.empower-xl.com/fusebox.cfm" target="_blank" rel="noopener noreferrer" class="brand-badge brand-badge-link" title="Open Official FCCU Empower Web Portal">FCCU Portal ↗</a></h1>
+            <span class="brand-subtitle">Forman Christian College (A Chartered University) &bull; Directorate of Athletics</span>
           </div>
         </a>
       </div>
 
-      <!-- Navigation Tabs across Chunks 1, 2, and 3 -->
+      <!-- Navigation Tabs -->
       <nav class="fccu-nav-tabs">
         <a href="dashboard.html" class="nav-tab-link active">
           <span>🏸</span> Matchmaking
@@ -34,35 +34,35 @@
         <a href="matches.html" class="nav-tab-link">
           <span>🏆</span> Scores &amp; Ladder
         </a>
-        <a href="admin.html" class="nav-tab-link">
-          <span>🛡️</span> Coach / Admin <span class="nav-badge-tag">Staff</span>
+        <a href="staff-login.html" class="nav-tab-link">
+          <span>🛡️</span> Staff Portal <span class="nav-badge-tag">Staff</span>
         </a>
       </nav>
 
-      <!-- Top Bar: Student Name, Roll No, Elo 1000, Weekly Booking Hours (2/3 hrs left) -->
+      <!-- Top Bar: Student Identity & Live Stats -->
       <div class="user-bar-profile">
         
         <!-- Elo Rating Pill -->
-        <span class="stat-pill elo-badge" id="userEloPill" title="Your initial baseline rating">
-          <span class="icon">🏆</span> Elo: <strong>1000</strong>
+        <span class="stat-pill elo-badge" id="userEloPill" title="Your verified Elo rating">
+          <span class="icon">🏆</span> Elo: <strong id="userEloVal">1040</strong>
         </span>
 
-        <!-- Weekly Booking Hours Remaining (2/3 hrs left) -->
+        <!-- Weekly Booking Hours Remaining -->
         <span class="stat-pill hours-badge" id="userHoursPill" title="Intramural court quota remaining this week">
-          <span class="icon">⏱️</span> <strong>2/3 hrs left</strong>
+          <span class="icon">⏱️</span> <strong id="userHoursVal">2/3 hrs left</strong>
         </span>
 
         <!-- Student Profile Identity -->
         <div class="user-identity">
-          <div class="avatar-circle" id="userAvatarCircle">MB</div>
+          <div class="avatar-circle" id="userAvatarCircle">BA</div>
           <div class="user-text-info">
-            <div class="user-name-title" id="userDisplayName">Muhammad Bilal</div>
-            <div class="user-roll-subtitle" id="userRollNumber">Roll No: 251084912</div>
+            <div class="user-name-title" id="userDisplayName">Bilal Ahmed</div>
+            <div class="user-roll-subtitle" id="userRollNumber">Roll No: 281140101</div>
           </div>
         </div>
 
-        <!-- Logout / Switch Account -->
-        <button type="button" class="btn-logout" id="btnLogout" title="Switch profile or return to login">
+        <!-- Logout -->
+        <button type="button" class="btn-logout" id="btnLogout" title="Log out from student session">
           Logout
         </button>
       </div>
@@ -72,6 +72,10 @@
 
   <!-- Main Dashboard Content -->
   <main class="page-container">
+
+    <!-- Dynamic System Notification Banner (e.g. Schedule Override Alerts) -->
+    <div id="systemNotificationArea"></div>
+
     <div class="dashboard-grid">
 
       <!-- ====================================================================
@@ -174,16 +178,16 @@
           <div class="bracket-indicator">
             <span class="bracket-badge" id="bracketBadge">Standard Bracket (±150 Elo)</span>
             <span id="bracketRangeValues" style="color: var(--text-secondary); font-size: 0.82rem; font-weight: 600;">
-              Elo 850 - 1150 | Sport: Badminton
+              Elo 890 - 1190 | Sport: Badminton
             </span>
           </div>
 
           <div style="display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap;">
-            <span class="privacy-notice-badge" title="Academic and government records are strictly kept confidential">
-              <span>🔒</span> CNIC & CGPA Protected
+            <span class="privacy-notice-badge" title="Academic and government records are strictly confidential">
+              <span>🔒</span> CNIC &amp; CGPA Protected
             </span>
             <span class="stat-pill" id="opponentCountBadge" style="background: #e2e8f0; color: var(--fccu-navy); font-weight: 700; font-size: 0.76rem;">
-              4 Players Available
+              Matching Players
             </span>
           </div>
         </div>
@@ -208,9 +212,9 @@
       <!-- Modal Header -->
       <div class="chat-modal-header">
         <div class="chat-header-user">
-          <div class="chat-avatar" id="chatAvatar">HT</div>
+          <div class="chat-avatar" id="chatAvatar">DK</div>
           <div class="chat-header-text">
-            <h3 id="chatOpponentName">Hamza Tariq</h3>
+            <h3 id="chatOpponentName">Daniyal Khan</h3>
             <p id="chatOpponentDetails">FCCU Intramural Player &bull; Badminton</p>
           </div>
         </div>
@@ -224,7 +228,7 @@
           <strong id="chatSummarySport">Badminton</strong>
         </div>
         <div class="stat-chip" id="chatSummaryElo">
-          Elo: 1020
+          Elo: 1025
         </div>
       </div>
 
@@ -261,7 +265,12 @@
   <footer class="fccu-footer">
     <div class="footer-content">
       <span><a href="https://www.fccollege.edu.pk" target="_blank" rel="noopener noreferrer" class="footer-link">&copy; 2026 Forman Christian College (A Chartered University)</a>. All Rights Reserved.</span>
-      <span>Sportsly Intramural Platform &bull; FCCU Sports Complex</span>
+      <span style="display: flex; align-items: center;">
+        Sportsly Intramural Platform &bull; FCCU Sports Complex
+        <button type="button" class="btn-footer-reset" onclick="resetSystemData()" title="Reset System Data to Default Baseline">
+          🔄 Reset System Data
+        </button>
+      </span>
     </div>
   </footer>
 
@@ -270,4 +279,3 @@
   <script src="js/dashboard.js"></script>
 </body>
 </html>
-

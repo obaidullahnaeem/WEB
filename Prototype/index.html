@@ -16,13 +16,13 @@
       <div class="brand-section">
         <div class="brand-crest">FC</div>
         <div class="brand-info">
-          <h1>Sportsly <span class="brand-badge">FCCU Portal</span></h1>
+          <h1>Sportsly <a href="https://mysis-fccollege.empower-xl.com/fusebox.cfm" target="_blank" rel="noopener noreferrer" class="brand-badge brand-badge-link" title="Open Official FCCU Empower Web Portal">FCCU Portal ↗</a></h1>
           <span class="brand-subtitle">Forman Christian College (A Chartered University) — Sports Directorate</span>
         </div>
       </div>
       <div class="user-bar-profile">
-        <a href="admin.html" class="stat-pill" style="color: #ffffff; text-decoration: none; border-color: rgba(245, 158, 11, 0.4);">
-          <span class="icon">🛡️</span> Coach / Admin Access
+        <a href="staff-login.html" class="stat-pill" style="color: #ffffff; text-decoration: none; border-color: rgba(245, 158, 11, 0.4);">
+          <span class="icon">🛡️</span> Staff Portal
         </a>
         <span class="stat-pill">
           <span class="icon">🏛️</span> Sports Complex Gateway
@@ -35,40 +35,28 @@
   <main class="page-container">
     <div class="login-wrapper">
       
-      <!-- Left Column: Official Student Login & Setup -->
+      <!-- Left Column: Official Student Login -->
       <section class="login-form-side">
         <div class="login-header">
           <span class="uni-tag">FCCU Intramural Athletics</span>
-          <h2>Student Login & Setup</h2>
-          <p>Access skill-based matchmaking, real-time court availability, and intramural ladder rankings.</p>
+          <h2>Student Portal Login</h2>
+          <p>Access competitive skill matchmaking, real-time court availability, and intramural ladder rankings.</p>
         </div>
 
-        <!-- Alert Notification Box (Dynamic Error / Warning) -->
+        <!-- Alert Notification Box (Dynamic Error / Disciplinary Hold Warning) -->
         <div id="loginAlert" class="alert-box hidden" role="alert"></div>
 
         <form id="loginForm" novalidate>
           
           <div class="form-group">
-            <label for="studentName" class="form-label">Student Full Name</label>
-            <input 
-              type="text" 
-              id="studentName" 
-              class="form-input" 
-              placeholder="e.g. Muhammad Bilal" 
-              autocomplete="name"
-            />
-            <div class="form-helper">Your preferred display name across FCCU Sports leaderboards.</div>
-          </div>
-
-          <div class="form-group">
             <label for="fccuEmail" class="form-label">
-              Official FCCU Email <span class="required-star">*</span>
+              Official FCCU Email (@fccollege.edu.pk) <span class="required-star">*</span>
             </label>
             <input 
               type="email" 
               id="fccuEmail" 
               class="form-input" 
-              placeholder="e.g. 251084912@fccollege.edu.pk" 
+              placeholder="e.g. 281140101@fccollege.edu.pk" 
               required
               autocomplete="email"
             />
@@ -79,13 +67,13 @@
 
           <div class="form-group">
             <label for="rollNumber" class="form-label">
-              FCCU 9-Digit Roll Number <span class="required-star">*</span>
+              9-Digit FCCU Roll Number <span class="required-star">*</span>
             </label>
             <input 
               type="text" 
               id="rollNumber" 
               class="form-input" 
-              placeholder="e.g. 251084912" 
+              placeholder="e.g. 281140101" 
               maxlength="9"
               inputmode="numeric"
               required
@@ -95,36 +83,16 @@
             </div>
           </div>
 
-          <!-- Demo Checkbox: Simulate Disciplinary Hold -->
-          <div class="hold-checkbox-card">
-            <input type="checkbox" id="disciplinaryHold" />
-            <div class="hold-text-block">
-              <label for="disciplinaryHold">⚠️ Simulate Disciplinary Hold (Demo Checkbox)</label>
-              <p>Check this box to test the system policy blocking athletes under disciplinary review by the Sports Directorate.</p>
-            </div>
-          </div>
-
           <button type="submit" class="btn-primary" id="btnLogin">
-            <span>Log In to Sportsly Dashboard</span>
+            <span>Log In to Sportsly</span>
             <span>→</span>
           </button>
 
-          <!-- Quick Test Toolbar for Evaluators -->
-          <div class="demo-quickfill">
-            <div class="demo-title">
-              <span>⚡</span> Quick Test Scenarios (Click to Pre-fill)
-            </div>
-            <div class="demo-btn-group">
-              <button type="button" class="btn-demo-pill" id="btnDemoValid">
-                ✅ Valid Student
-              </button>
-              <button type="button" class="btn-demo-pill" id="btnDemoHold">
-                ⛔ Disciplinary Hold
-              </button>
-              <button type="button" class="btn-demo-pill" id="btnDemoInvalidEmail">
-                ❌ Non-FCCU Email
-              </button>
-            </div>
+          <!-- Dedicated Management Login Redirect Link -->
+          <div style="margin-top: 1.5rem; text-align: center; padding-top: 1rem; border-top: 1px solid var(--border-light);">
+            <a href="staff-login.html" style="color: var(--fccu-navy); font-weight: 600; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem;">
+              <span>🛡️</span> Management &amp; Coaching Staff Login &rarr;
+            </a>
           </div>
 
         </form>
@@ -154,8 +122,8 @@
             <li class="feature-item">
               <div class="feature-icon-box">🛡️</div>
               <div class="feature-text">
-                <h4>Privacy & Fair Play</h4>
-                <p>Confidential academic data (CNIC, CGPA) remains protected and hidden from all public matchmaking cards.</p>
+                <h4>Privacy &amp; Fair Play</h4>
+                <p>Confidential academic data (CNIC, CGPA) remains protected and hidden from all public student views.</p>
               </div>
             </li>
             <li class="feature-item">
@@ -169,8 +137,8 @@
         </div>
 
         <div class="banner-footer">
-          <span>FCCU Sports Complex &bull; Hall 1-4</span>
-          <span>Version 1.0 (Chunk 1)</span>
+          <span>FCCU Sports Complex &bull; Halls 1-4</span>
+          <span>Directorate of Athletics</span>
         </div>
       </aside>
 
@@ -181,7 +149,12 @@
   <footer class="fccu-footer">
     <div class="footer-content">
       <span><a href="https://www.fccollege.edu.pk" target="_blank" rel="noopener noreferrer" class="footer-link">&copy; 2026 Forman Christian College (A Chartered University)</a>. All Rights Reserved.</span>
-      <span>Sportsly Intramural System &bull; Directorate of Athletics</span>
+      <span style="display: flex; align-items: center;">
+        Sportsly Intramural System &bull; Directorate of Athletics
+        <button type="button" class="btn-footer-reset" onclick="resetSystemData()" title="Reset System Data to Default Baseline">
+          🔄 Reset System Data
+        </button>
+      </span>
     </div>
   </footer>
 
@@ -190,4 +163,3 @@
   <script src="js/auth.js"></script>
 </body>
 </html>
-

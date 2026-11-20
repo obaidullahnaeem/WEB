@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportsly | FCCU Directorate Management & Coach Login</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="fccu-navbar">
+    <div class="navbar-container">
+      <div class="brand-section">
+        <div class="brand-crest">FC</div>
+        <div class="brand-info">
+          <h1>Sportsly <a href="https://mysis-fccollege.empower-xl.com/fusebox.cfm" target="_blank" rel="noopener noreferrer" class="brand-badge brand-badge-link" title="Open Official FCCU Empower Web Portal">FCCU Portal ↗</a></h1>
+          <span class="brand-subtitle">Forman Christian College (A Chartered University) — Directorate of Athletics</span>
+        </div>
+      </div>
+      <div class="user-bar-profile">
+        <a href="index.html" class="stat-pill" style="color: #ffffff; text-decoration: none;">
+          <span class="icon">🎓</span> Student Portal Login
+        </a>
+        <span class="stat-pill" style="border-color: rgba(245, 158, 11, 0.4); color: #fef3c7;">
+          <span class="icon">🛡️</span> Management Gateway
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="page-container">
+    <div class="login-wrapper">
+      
+      <!-- Left Column: Staff Management Login -->
+      <section class="login-form-side">
+        <div class="login-header">
+          <span class="uni-tag" style="background: #fef3c7; color: #92400e; border: 1px solid #fde68a;">
+            Directorate of Athletics &amp; Faculty
+          </span>
+          <h2>Management &amp; Coaching Portal</h2>
+          <p>Authorized access for Sports Directorate leadership, coaching faculty, and Sports Society executive leadership.</p>
+        </div>
+
+        <!-- Alert Notification Box -->
+        <div id="staffAlert" class="alert-box hidden" role="alert"></div>
+
+        <form id="staffLoginForm" novalidate>
+          
+          <div class="form-group">
+            <label for="staffEmail" class="form-label">
+              Official Staff Email (@fccollege.edu.pk) <span class="required-star">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="staffEmail" 
+              class="form-input" 
+              placeholder="e.g. sadia.sports@fccollege.edu.pk" 
+              required
+              autocomplete="email"
+            />
+            <div class="form-helper">
+              <span>🔒</span> Must end strictly with <strong>@fccollege.edu.pk</strong>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="staffId" class="form-label">
+              Official Staff ID <span class="required-star">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="staffId" 
+              class="form-input" 
+              placeholder="e.g. FCCU-ADMIN-01" 
+              required
+              autocomplete="off"
+            />
+            <div class="form-helper">
+              <span>🪪</span> Official Directorate Staff ID (e.g. FCCU-ADMIN-01, FCCU-COACH-02, FCCU-SOC-03)
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" id="btnStaffLogin" style="background: linear-gradient(135deg, var(--fccu-navy) 0%, #1e3a8a 100%);">
+            <span>Log In to Directorate Command Center</span>
+            <span>→</span>
+          </button>
+
+          <!-- Back to Student Login -->
+          <div style="margin-top: 1.5rem; text-align: center; padding-top: 1rem; border-top: 1px solid var(--border-light);">
+            <a href="index.html" style="color: var(--fccu-navy); font-weight: 600; text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem;">
+              &larr; Back to Student Login
+            </a>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- Right Column: Institutional Role Profiles Guide -->
+      <aside class="login-banner-side" style="background: linear-gradient(145deg, #0b1f3a 0%, #172554 100%);">
+        <div class="banner-content">
+          <h3>Authorized Management Roles</h3>
+          <p>The Command Center tailors permissions and dashboard views according to your appointed administrative jurisdiction:</p>
+          
+          <ul class="feature-list">
+            <li class="feature-item" style="cursor: pointer;" onclick="prefillStaff('sadia.sports@fccollege.edu.pk', 'FCCU-ADMIN-01')">
+              <div class="feature-icon-box" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">⚖️</div>
+              <div class="feature-text">
+                <h4>Head of Sports Department (Mam Sadia)</h4>
+                <p>Exclusive dispute arbitration queue, campus booking hour policy limits, and department utilization reports.</p>
+                <span style="font-size: 0.72rem; color: #cbd5e1; font-family: monospace;">sadia.sports@fccollege.edu.pk &bull; FCCU-ADMIN-01</span>
+              </div>
+            </li>
+            
+            <li class="feature-item" style="cursor: pointer;" onclick="prefillStaff('saqib.coach@fccollege.edu.pk', 'FCCU-COACH-02')">
+              <div class="feature-icon-box" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa;">📋</div>
+              <div class="feature-text">
+                <h4>Sports Coordinator / Coach (Sir Saqib)</h4>
+                <p>Confidential student athlete roster, Disciplinary Hold enforcement, manual Elo adjustments, and varsity trials.</p>
+                <span style="font-size: 0.72rem; color: #cbd5e1; font-family: monospace;">saqib.coach@fccollege.edu.pk &bull; FCCU-COACH-02</span>
+              </div>
+            </li>
+
+            <li class="feature-item" style="cursor: pointer;" onclick="prefillStaff('abdul.ahad@fccollege.edu.pk', 'FCCU-SOC-03')">
+              <div class="feature-icon-box" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">🏆</div>
+              <div class="feature-text">
+                <h4>President Sports Society (Abdul Ahad)</h4>
+                <p>Tournament seeded bracket generator, manual championship court overrides, and 2-3 week event locking.</p>
+                <span style="font-size: 0.72rem; color: #cbd5e1; font-family: monospace;">abdul.ahad@fccollege.edu.pk &bull; FCCU-SOC-03</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="banner-footer">
+          <span>Forman Christian College &bull; Athletics Directorate</span>
+          <span>Institutional Access Control</span>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- University Footer -->
+  <footer class="fccu-footer">
+    <div class="footer-content">
+      <span><a href="https://www.fccollege.edu.pk" target="_blank" rel="noopener noreferrer" class="footer-link">&copy; 2026 Forman Christian College (A Chartered University)</a>. All Rights Reserved.</span>
+      <span style="display: flex; align-items: center;">
+        Sportsly Intramural System &bull; Directorate of Athletics
+        <button type="button" class="btn-footer-reset" onclick="resetSystemData()" title="Reset System Data to Default Baseline">
+          🔄 Reset System Data
+        </button>
+      </span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script>
+    function prefillStaff(email, id) {
+      document.getElementById('staffEmail').value = email;
+      document.getElementById('staffId').value = id;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('staffLoginForm');
+      const emailInput = document.getElementById('staffEmail');
+      const idInput = document.getElementById('staffId');
+      const alertBox = document.getElementById('staffAlert');
+
+      function showAlert(msg, type = 'error') {
+        alertBox.className = `alert-box alert-${type}`;
+        alertBox.innerHTML = `
+          <span style="font-size:1.2rem; flex-shrink:0;">${type === 'success' ? '✅' : '⛔'}</span>
+          <div>${msg}</div>
+        `;
+        alertBox.classList.remove('hidden');
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = (emailInput.value || '').trim().toLowerCase();
+        const staffId = (idInput.value || '').trim().toUpperCase();
+
+        if (!email || !staffId) {
+          showAlert('Please enter both your official FCCU Staff Email and Staff ID.');
+          return;
+        }
+
+        if (!email.endsWith('@fccollege.edu.pk')) {
+          showAlert('Domain Verification Failed: Staff login requires an official <code>@fccollege.edu.pk</code> address.');
+          return;
+        }
+
+        const staffList = getStaffAccounts();
+        const matched = staffList.find(
+          s => s.email.toLowerCase() === email && s.staffId.toUpperCase() === staffId
+        );
+
+        if (!matched) {
+          showAlert('Authentication Failed: Invalid staff email or Staff ID. Please verify your institutional appointment records.');
+          return;
+        }
+
+        // Save active management session
+        saveLoggedInStaff(matched);
+        showAlert(`Authenticated as ${matched.name} (${matched.role}). Redirecting to Command Center...`, 'success');
+
+        setTimeout(() => {
+          window.location.href = 'admin.html';
+        }, 600);
+      });
+    });
+  </script>
+</body>
+</html>

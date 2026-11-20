@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sportsly | Dual Score Confirmation & Public Leaderboard (Chunk 2)</title>
+  <title>Sportsly | Dual Score Confirmation &amp; Public Campus Ladder</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -27,24 +27,21 @@
         <div class="section-head-bar">
           <div>
             <h2>
-              <span>⚔️</span> My Matches & Dual Score Confirmation
+              <span>⚔️</span> My Matches &amp; Dual Score Confirmation
             </h2>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
-              Submit match results. When both athletes submit matching scores, ratings update automatically.
+              Submit your verified match result. When both athletes confirm consistent scores, ratings update automatically.
             </p>
           </div>
 
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button type="button" class="btn-demo-pill" id="btnAddSampleMatch">
-              <span>➕</span> Add Sample Match
-            </button>
-            <button type="button" class="btn-demo-pill" id="btnResetMatches">
-              <span>🔄</span> Reset Matches
-            </button>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="stat-pill" style="background: #f1f5f9; color: var(--fccu-navy); font-weight: 700; font-size: 0.78rem;">
+              <span>⚖️</span> Dual Confirmation Protocol
+            </span>
           </div>
         </div>
 
-        <!-- Matches Cards List -->
+        <!-- Matches Cards List (Pre-seeded M-101 and M-102 with NO simulation controls) -->
         <div class="match-list-grid" id="matchesListContainer">
           <!-- Populated dynamically via js/matches.js -->
         </div>
@@ -68,7 +65,7 @@
 
           <div style="display: flex; align-items: center; gap: 0.75rem;">
             <span class="stat-pill" id="leaderboardPlayerCount" style="background:#e2e8f0; color:var(--fccu-navy); font-weight:700;">
-              21 Athletes Ranked
+              Athletes Ranked
             </span>
           </div>
         </div>
@@ -118,8 +115,13 @@
   <!-- University Footer -->
   <footer class="fccu-footer">
     <div class="footer-content">
-      <span><a href="https://www.fccollege.edu.pk" target="_blank" rel="noopener noreferrer" class="footer-link">&copy; 2026 Forman Christian College (A Chartered University)</a></span>
-      <span>Sportsly Intramural Platform &bull; Chunk 2 Dual Score & Leaderboard Module</span>
+      <span><a href="https://www.fccollege.edu.pk" target="_blank" rel="noopener noreferrer" class="footer-link">&copy; 2026 Forman Christian College (A Chartered University)</a>. All Rights Reserved.</span>
+      <span style="display: flex; align-items: center;">
+        Sportsly Intramural Platform &bull; Match Verification &amp; Leaderboard
+        <button type="button" class="btn-footer-reset" onclick="resetSystemData()" title="Reset System Data to Default Baseline">
+          🔄 Reset System Data
+        </button>
+      </span>
     </div>
   </footer>
 
@@ -128,4 +130,3 @@
   <script src="js/matches.js"></script>
 </body>
 </html>
-

@@ -4,26 +4,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Ensure user session exists, else initialize default demo user
+  // Ensure user session exists, else return to login
   let currentUser = getCurrentUser();
   if (!currentUser) {
-    currentUser = {
-      name: 'Muhammad Bilal',
-      email: '251084912@fccollege.edu.pk',
-      rollNumber: '251084912',
-      elo: 1000,
-      weeklyHoursRemaining: 2,
-      weeklyHoursTotal: 3,
-      selectedSport: 'Badminton',
-      playNowActive: false,
-      disciplinaryHold: false,
-      freeSlots: [
-        'Mon 4:00 PM - 5:00 PM',
-        'Wed 4:00 PM - 5:00 PM',
-        'Fri 3:00 PM - 5:00 PM'
-      ]
-    };
-    saveCurrentUser(currentUser);
+    window.location.href = 'index.html';
+    return;
   }
 
   // State
@@ -35,9 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const userDisplayName = document.getElementById('userDisplayName');
   const userRollNumber = document.getElementById('userRollNumber');
   const userAvatarCircle = document.getElementById('userAvatarCircle');
-  const userEloPill = document.getElementById('userEloPill');
-  const userHoursPill = document.getElementById('userHoursPill');
+  const userEloVal = document.getElementById('userEloVal');
+  const userHoursVal = document.getElementById('userHoursVal');
   const btnLogout = document.getElementById('btnLogout');
+  const systemNotificationArea = document.getElementById('systemNotificationArea');
 
   // DOM Elements - Availability Panel
   const sportSelect = document.getElementById('sportSelect');
@@ -101,13 +87,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
+  // Render System Notification Banner (e.g. Ayesha Siddiqui Override Notice)
+  // ==========================================================================
+  function renderSystemNotifications() {
+    if (!systemNotificationArea) return;
+    
+    // Check if user has an override notice (e.g., Ayesha Siddiqui Roll 281140303)
+    if (currentUser.hasOverrideNotice || currentUser.rollNumber === '281140303') {
+      const noticeMsg = currentUser.overrideMessage || 
+        'Schedule Notice: Your 6:00 PM reservation on Badminton Court 2 was overridden by Sports Administration for Varsity/Female-Only practice. Your 1 weekly booking hour has been refunded.';
+      
+      systemNotificationArea.innerHTML = `
+        <div class="system-notice-banner" role="alert">
+          <span class="banner-icon">📢</span>
+          <div>
+            <strong>Schedule Notice:</strong> Your 6:00 PM reservation on Badminton Court 2 was overridden by Sports Administration for Varsity/Female-Only practice. Your 1 weekly booking hour has been refunded.
+          </div>
+        </div>
+      `;
+    } else {
+      systemNotificationArea.innerHTML = '';
+    }
+  }
+
+  // ==========================================================================
   // Render Top Bar Info
   // ==========================================================================
   function renderTopBar() {
     if (userDisplayName) userDisplayName.textContent = currentUser.name;
     if (userRollNumber) userRollNumber.textContent = `Roll No: ${currentUser.rollNumber}`;
     
-    // Avatar initials
     if (userAvatarCircle) {
       const parts = currentUser.name.trim().split(' ');
       const initials = parts.length > 1 
@@ -116,43 +125,39 @@ document.addEventListener('DOMContentLoaded', () => {
       userAvatarCircle.textContent = initials;
     }
 
-    // Current Elo Rank (1000 Baseline)
-    if (userEloPill) {
-      userEloPill.innerHTML = `<span class="icon">🏆</span> <strong>${currentUser.elo} Elo</strong>`;
+    if (userEloVal) {
+      userEloVal.textContent = currentUser.elo;
     }
 
-    // Weekly Booking Hours remaining (2/3 hrs left)
-    if (userHoursPill) {
-      userHoursPill.innerHTML = `<span class="icon">⏱️</span> <strong>${currentUser.weeklyHoursRemaining}/${currentUser.weeklyHoursTotal} hrs left</strong>`;
+    if (userHoursVal) {
+      userHoursVal.textContent = `${currentUser.weeklyHoursRemaining}/${currentUser.weeklyHoursTotal} hrs left`;
     }
   }
 
   // Logout handler
   if (btnLogout) {
     btnLogout.addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
       window.location.href = 'index.html';
     });
   }
 
   // ==========================================================================
-  // Availability Panel: Sports, Play Now Switch, Slots
+  // Availability Panel
   // ==========================================================================
   function initAvailabilityPanel() {
-    // 1. Sport Selector
     if (sportSelect) {
       sportSelect.value = activeSport;
       sportSelect.addEventListener('change', (e) => {
         activeSport = e.target.value;
         currentUser.selectedSport = activeSport;
         saveCurrentUser(currentUser);
-        // Reset expanded range when sport changes
         isRangeExpanded = false;
         renderOpponents();
-        showToast(`Sport switched to ${activeSport}. Matchmaking updated.`, 'info');
+        showToast(`Sport switched to ${activeSport}. Matchmaking refreshed.`, 'info');
       });
     }
 
-    // 2. Play Now Live Toggle
     if (playNowToggle && playNowCard) {
       playNowToggle.checked = !!currentUser.playNowActive;
       updatePlayNowVisuals(currentUser.playNowActive);
@@ -171,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 3. Weekly Free Time Slots
     renderWeeklySlots();
 
     if (btnSelectAllSlots) {
@@ -179,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentUser.freeSlots = [...DEFAULT_WEEKLY_SLOTS];
         saveCurrentUser(currentUser);
         renderWeeklySlots();
-        flashSyncTag('All 10 weekly time slots selected');
+        flashSyncTag('All weekly time slots selected');
       });
     }
 
@@ -225,12 +229,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       checkbox.addEventListener('change', (e) => {
         if (e.target.checked) {
+          if (!currentUser.freeSlots) currentUser.freeSlots = [];
           if (!currentUser.freeSlots.includes(slotText)) {
             currentUser.freeSlots.push(slotText);
           }
           slotItem.classList.add('checked');
         } else {
-          currentUser.freeSlots = currentUser.freeSlots.filter(s => s !== slotText);
+          currentUser.freeSlots = (currentUser.freeSlots || []).filter(s => s !== slotText);
           slotItem.classList.remove('checked');
         }
         saveCurrentUser(currentUser);
@@ -267,7 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const minElo = userElo - deltaAllowed;
     const maxElo = userElo + deltaAllowed;
 
-    // Update range indicator in the UI
     if (bracketBadge) {
       if (isRangeExpanded) {
         bracketBadge.className = 'bracket-badge expanded';
@@ -292,28 +296,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Filter by same sport and Elo range
-    const matches = MOCK_OPPONENTS.filter(opp => {
-      const sportMatches = opp.sport.toLowerCase() === activeSport.toLowerCase();
-      const eloDifference = Math.abs(opp.elo - userElo);
+    // Get fresh athletes from persistent student DB
+    const allStudents = getStudents();
+    const candidateOpponents = allStudents.filter(s => {
+      // Exclude current student
+      if (s.rollNumber === currentUser.rollNumber) return false;
+      // Exclude athletes with active disciplinary hold
+      if (s.disciplinaryHold === true) return false;
+      // Sport match
+      const sportMatches = s.sport.toLowerCase() === activeSport.toLowerCase();
+      // Elo delta
+      const eloDifference = Math.abs(s.elo - userElo);
       return sportMatches && (eloDifference <= deltaAllowed);
     });
 
-    // Update Opponent Count Badge
     if (opponentCountBadge) {
-      opponentCountBadge.textContent = `${matches.length} Player${matches.length === 1 ? '' : 's'} Available`;
+      opponentCountBadge.textContent = `${candidateOpponents.length} Player${candidateOpponents.length === 1 ? '' : 's'} Available`;
     }
 
-    // If no opponents found
-    if (matches.length === 0) {
+    if (candidateOpponents.length === 0) {
       const emptyBox = document.createElement('div');
       emptyBox.className = 'empty-opponents-box';
       emptyBox.innerHTML = `
         <div class="empty-icon">🏸</div>
         <h3>No FCCU Athletes Found in ±${deltaAllowed} Elo Range</h3>
-        <p>No students currently match the <strong>${activeSport}</strong> criteria within ${minElo} - ${maxElo} Elo. Expand your skill bracket to find more campus opponents.</p>
+        <p>No active students currently match the <strong>${activeSport}</strong> criteria within ${minElo} - ${maxElo} Elo. Expand your skill bracket to find more campus opponents.</p>
         ${!isRangeExpanded ? `
-          <button type="button" class="btn-expand-range" style="margin: 0 auto;" id="btnEmptyExpand">
+          <button type="button" class="btn-expand-range" style="margin: 0.75rem auto 0;" id="btnEmptyExpand">
             <span>⚡</span> Expand Range (±250 Elo)
           </button>
         ` : ''}
@@ -331,10 +340,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Render Matching Opponent Cards
-    // STRICT PRIVACY RULE: Display ONLY Name, Sport, Elo Rank, and Win/Loss record.
-    // Strictly hide CNIC and CGPA.
-    matches.forEach(opp => {
+    // STRICT PRIVACY RULE: Display ONLY Name, Sport, Elo Rank, and Recent Win/Loss Record.
+    // Strictly protect CNIC, CGPA, and Disciplinary Holds from public cards.
+    candidateOpponents.forEach(opp => {
       const card = document.createElement('div');
       card.className = 'opponent-card';
 
@@ -350,10 +358,9 @@ document.addEventListener('DOMContentLoaded', () => {
         diffClass = 'extended';
       }
 
-      // Initial for avatar
       const oppInitials = opp.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+      const recordText = `${opp.wins || 0}W - ${opp.losses || 0}L`;
 
-      // Card Markup strictly complies with displaying ONLY: Name, Sport, Elo, Win/Loss Record
       card.innerHTML = `
         <div>
           <div class="card-top-row">
@@ -367,22 +374,22 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="elo-delta-badge ${diffClass}">${diffText}</span>
           </div>
 
-          <!-- Strict Display: Elo Rank and Recent Win/Loss Record ONLY -->
+          <!-- Public Athletic Stats ONLY: Elo Rank and Win/Loss Record -->
           <div class="card-stats-grid">
             <div class="stat-cell">
               <span class="label">Elo Rating</span>
               <span class="value elo-highlight">⭐ ${opp.elo}</span>
             </div>
             <div class="stat-cell">
-              <span class="label">Win / Loss</span>
-              <span class="value record-highlight">📊 ${escapeHtml(opp.winLoss)}</span>
+              <span class="label">Intramural Record</span>
+              <span class="value record-highlight">📊 ${recordText}</span>
             </div>
           </div>
         </div>
 
         <div class="card-actions-row">
           <button type="button" class="btn-invite-chat" data-id="${opp.id}">
-            <span>💬</span> Send Invite & Chat
+            <span>💬</span> Send Invite &amp; Chat
           </button>
           <a href="booking.html?opponent=${encodeURIComponent(opp.name)}&sport=${encodeURIComponent(opp.sport)}" class="btn-book-court">
             <span>📅</span> Book Court
@@ -390,9 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
-      // Attach Invite & Chat button listener
-      const btnChat = card.querySelector('.btn-invite-chat');
-      btnChat.addEventListener('click', () => {
+      card.querySelector('.btn-invite-chat').addEventListener('click', () => {
         openChatModal(opp);
       });
 
@@ -401,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // Pre-Match Chat Popup Modal Logic
+  // Pre-Match Chat Modal Logic
   // ==========================================================================
   function openChatModal(opponent) {
     activeOpponentForChat = opponent;
@@ -415,10 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chatSummarySport) chatSummarySport.textContent = opponent.sport;
     if (chatSummaryElo) chatSummaryElo.textContent = `Elo: ${opponent.elo}`;
 
-    // Load or initialize chat thread from localStorage
     loadChatMessages(opponent.id);
-
-    // Setup Quick Prompt Chips
     renderQuickChips(opponent);
 
     chatModal.classList.remove('hidden');
@@ -432,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getChatStorageKey(oppId) {
-    return `${STORAGE_KEYS.CHAT_HISTORY}_${oppId}`;
+    return `${STORAGE_KEYS.CHAT_HISTORY}_${currentUser.rollNumber}_${oppId}`;
   }
 
   function loadChatMessages(oppId) {
@@ -448,7 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
       messages = [];
     }
 
-    // Default introductory handshake if thread is empty
     if (messages.length === 0) {
       messages = [
         {
@@ -458,17 +459,14 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
           type: 'outgoing',
-          text: `Hi ${activeOpponentForChat.name}! I noticed you play ${activeOpponentForChat.sport} at the FCCU Sports Complex. Would you be up for a friendly intramural match this week?`,
+          text: `Hi ${activeOpponentForChat.name}! Are you open for an intramural match at the FCCU Sports Complex this week?`,
           time: formatTime(new Date())
         }
       ];
       localStorage.setItem(key, JSON.stringify(messages));
     }
 
-    messages.forEach(msg => {
-      appendChatMessageToDOM(msg);
-    });
-
+    messages.forEach(msg => appendChatMessageToDOM(msg));
     scrollChatToBottom();
   }
 
@@ -518,14 +516,14 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollChatToBottom();
     if (chatInput) chatInput.value = '';
 
-    showToast(`Invite sent to ${activeOpponentForChat.name}!`, 'success');
+    showToast(`Invite message delivered to ${activeOpponentForChat.name}!`, 'success');
 
-    // Simulate friendly opponent auto-reply after 1.2 seconds for realistic prototype interactivity
+    // Friendly opponent automatic response
     setTimeout(() => {
       if (activeOpponentForChat && chatModal && !chatModal.classList.contains('hidden')) {
         const autoReply = {
           type: 'incoming',
-          text: `Sounds awesome! Let's lock in a court. You can click 'Book Court' so we reserve a slot.`,
+          text: `Sounds great! Go ahead and reserve an open court slot on the Court Booking grid.`,
           time: formatTime(new Date())
         };
         messages.push(autoReply);
@@ -533,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
         appendChatMessageToDOM(autoReply);
         scrollChatToBottom();
       }
-    }, 1200);
+    }, 1100);
   }
 
   function renderQuickChips(opponent) {
@@ -541,10 +539,10 @@ document.addEventListener('DOMContentLoaded', () => {
     quickChipsContainer.innerHTML = '';
 
     const chips = [
-      `Free today at 4:00 PM?`,
-      `Let's book Court 2!`,
+      `Free today at 5:00 PM?`,
+      `Let's book Court 1!`,
       `Are you at the Sports Complex now?`,
-      `Best of 3 sets intramural match?`
+      `Best of 3 sets match?`
     ];
 
     chips.forEach(chipText => {
@@ -571,28 +569,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function escapeHtml(str) {
     if (!str) return '';
-    return str.replace(/[&<>"']/g, (m) => {
+    return String(str).replace(/[&<>"']/g, (m) => {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
     });
   }
 
-  // Chat Event Listeners
-  if (btnCloseChat) {
-    btnCloseChat.addEventListener('click', closeChatModal);
-  }
-
+  // Event Listeners
+  if (btnCloseChat) btnCloseChat.addEventListener('click', closeChatModal);
   if (chatModal) {
     chatModal.addEventListener('click', (e) => {
       if (e.target === chatModal) closeChatModal();
     });
   }
-
   if (btnSendChat) {
     btnSendChat.addEventListener('click', () => {
       if (chatInput) sendUserChatMessage(chatInput.value);
     });
   }
-
   if (chatInput) {
     chatInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
@@ -601,17 +594,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  // ==========================================================================
-  // Matchmaking Button Controls
-  // ==========================================================================
   if (btnFindOpponent) {
     btnFindOpponent.addEventListener('click', () => {
       renderOpponents();
       showToast(`Refreshed ${activeSport} opponents within active Elo range.`, 'info');
     });
   }
-
   if (btnExpandRange) {
     btnExpandRange.addEventListener('click', () => {
       isRangeExpanded = !isRangeExpanded;
@@ -624,11 +612,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ==========================================================================
-  // Initialization
-  // ==========================================================================
+  // Initialize UI
   renderTopBar();
+  renderSystemNotifications();
   initAvailabilityPanel();
   renderOpponents();
 });
-
