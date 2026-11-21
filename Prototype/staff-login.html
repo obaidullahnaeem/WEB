@@ -190,8 +190,13 @@
           return;
         }
 
+        if (email.endsWith('@formanite.fccollege.edu.pk')) {
+          showAlert('Domain Error: <code>@formanite.fccollege.edu.pk</code> is designated for student accounts only. Staff members must use their official <code>@fccollege.edu.pk</code> address.');
+          return;
+        }
+
         if (!email.endsWith('@fccollege.edu.pk')) {
-          showAlert('Domain Verification Failed: Staff login requires an official <code>@fccollege.edu.pk</code> address.');
+          showAlert('Domain Verification Failed: Staff login strictly requires an official <code>@fccollege.edu.pk</code> address.');
           return;
         }
 

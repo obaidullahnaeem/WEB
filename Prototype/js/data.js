@@ -67,7 +67,7 @@ const DEFAULT_STUDENTS = [
   // 1. Student Login 1 — Active Student with Booked Court & Pending Matches
   {
     id: 'std-281140101',
-    email: '281140101@fccollege.edu.pk',
+    email: '281140101@formanite.fccollege.edu.pk',
     rollNumber: '281140101',
     name: 'Bilal Ahmed',
     sport: 'Badminton',
@@ -92,7 +92,7 @@ const DEFAULT_STUDENTS = [
   // 2. Student Login 2 — Blocked by Disciplinary Hold
   {
     id: 'std-281140202',
-    email: '281140202@fccollege.edu.pk',
+    email: '281140202@formanite.fccollege.edu.pk',
     rollNumber: '281140202',
     name: 'Usman Farooq',
     sport: 'Table Tennis',
@@ -116,7 +116,7 @@ const DEFAULT_STUDENTS = [
   // 3. Student Login 3 — Affected by Admin Locked Court & Booking Override
   {
     id: 'std-281140303',
-    email: '281140303@fccollege.edu.pk',
+    email: '281140303@formanite.fccollege.edu.pk',
     rollNumber: '281140303',
     name: 'Ayesha Siddiqui',
     sport: 'Badminton',
@@ -143,7 +143,7 @@ const DEFAULT_STUDENTS = [
   // 4. Student Login 4 — Weekly Booking Hour Limit Reached (3/3 Hours Used)
   {
     id: 'std-281140404',
-    email: '281140404@fccollege.edu.pk',
+    email: '281140404@formanite.fccollege.edu.pk',
     rollNumber: '281140404',
     name: 'Hamza Tariq',
     sport: 'Badminton',
@@ -167,7 +167,7 @@ const DEFAULT_STUDENTS = [
   // 5. Daniyal Khan (Opponent for M-101)
   {
     id: 'std-281140505',
-    email: '281140505@fccollege.edu.pk',
+    email: '281140505@formanite.fccollege.edu.pk',
     rollNumber: '281140505',
     name: 'Daniyal Khan',
     sport: 'Badminton',
@@ -188,7 +188,7 @@ const DEFAULT_STUDENTS = [
   // 6. Raza Mehmood (Opponent for M-102)
   {
     id: 'std-281140606',
-    email: '281140606@fccollege.edu.pk',
+    email: '281140606@formanite.fccollege.edu.pk',
     rollNumber: '281140606',
     name: 'Raza Mehmood',
     sport: 'Badminton',
@@ -209,7 +209,7 @@ const DEFAULT_STUDENTS = [
   // Additional Active Student Athletes across Table Tennis and Lawn Tennis
   {
     id: 'std-281140707',
-    email: '281140707@fccollege.edu.pk',
+    email: '281140707@formanite.fccollege.edu.pk',
     rollNumber: '281140707',
     name: 'Saad Qureshi',
     sport: 'Badminton',
@@ -228,7 +228,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281140808',
-    email: '281140808@fccollege.edu.pk',
+    email: '281140808@formanite.fccollege.edu.pk',
     rollNumber: '281140808',
     name: 'Usman Rafique',
     sport: 'Table Tennis',
@@ -247,7 +247,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281140909',
-    email: '281140909@fccollege.edu.pk',
+    email: '281140909@formanite.fccollege.edu.pk',
     rollNumber: '281140909',
     name: 'Taimoor Hassan',
     sport: 'Lawn Tennis',
@@ -266,7 +266,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141010',
-    email: '281141010@fccollege.edu.pk',
+    email: '281141010@formanite.fccollege.edu.pk',
     rollNumber: '281141010',
     name: 'Maryam Nawazish',
     sport: 'Badminton',
@@ -285,7 +285,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141111',
-    email: '281141111@fccollege.edu.pk',
+    email: '281141111@formanite.fccollege.edu.pk',
     rollNumber: '281141111',
     name: 'Farhan Akram',
     sport: 'Badminton',
@@ -304,7 +304,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141212',
-    email: '281141212@fccollege.edu.pk',
+    email: '281141212@formanite.fccollege.edu.pk',
     rollNumber: '281141212',
     name: 'Omer Farooq',
     sport: 'Table Tennis',
@@ -323,7 +323,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141313',
-    email: '281141313@fccollege.edu.pk',
+    email: '281141313@formanite.fccollege.edu.pk',
     rollNumber: '281141313',
     name: 'Abdullah Cheema',
     sport: 'Lawn Tennis',
@@ -342,7 +342,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141414',
-    email: '281141414@fccollege.edu.pk',
+    email: '281141414@formanite.fccollege.edu.pk',
     rollNumber: '281141414',
     name: 'Haris Butt',
     sport: 'Table Tennis',
@@ -361,7 +361,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141515',
-    email: '281141515@fccollege.edu.pk',
+    email: '281141515@formanite.fccollege.edu.pk',
     rollNumber: '281141515',
     name: 'Zainab Javed',
     sport: 'Table Tennis',
@@ -380,7 +380,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141616',
-    email: '281141616@fccollege.edu.pk',
+    email: '281141616@formanite.fccollege.edu.pk',
     rollNumber: '281141616',
     name: 'Shahmeer Khan',
     sport: 'Lawn Tennis',
@@ -399,7 +399,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141717',
-    email: '281141717@fccollege.edu.pk',
+    email: '281141717@formanite.fccollege.edu.pk',
     rollNumber: '281141717',
     name: 'Mahnoor Fatima',
     sport: 'Badminton',
@@ -418,7 +418,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141818',
-    email: '281141818@fccollege.edu.pk',
+    email: '281141818@formanite.fccollege.edu.pk',
     rollNumber: '281141818',
     name: 'Bilal Mustafa',
     sport: 'Table Tennis',
@@ -437,7 +437,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281141919',
-    email: '281141919@fccollege.edu.pk',
+    email: '281141919@formanite.fccollege.edu.pk',
     rollNumber: '281141919',
     name: 'Alizeh Rehman',
     sport: 'Lawn Tennis',
@@ -456,7 +456,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281142020',
-    email: '281142020@fccollege.edu.pk',
+    email: '281142020@formanite.fccollege.edu.pk',
     rollNumber: '281142020',
     name: 'Nimra Khalid',
     sport: 'Table Tennis',
@@ -475,7 +475,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281142121',
-    email: '281142121@fccollege.edu.pk',
+    email: '281142121@formanite.fccollege.edu.pk',
     rollNumber: '281142121',
     name: 'Fatima Zahra',
     sport: 'Lawn Tennis',
@@ -494,7 +494,7 @@ const DEFAULT_STUDENTS = [
   },
   {
     id: 'std-281142222',
-    email: '281142222@fccollege.edu.pk',
+    email: '281142222@formanite.fccollege.edu.pk',
     rollNumber: '281142222',
     name: 'Zayd Al-Hassan',
     sport: 'Badminton',
@@ -1027,11 +1027,41 @@ function resetSystemData() {
   }
 }
 
-// Initial bootstrap on first load
+// Initial bootstrap and automatic domain migration on load
 (function bootstrapState() {
-  if (!localStorage.getItem(STORAGE_KEYS.STUDENT_DB)) {
+  const existingStudentData = localStorage.getItem(STORAGE_KEYS.STUDENT_DB);
+  if (!existingStudentData) {
     saveStudents(DEFAULT_STUDENTS);
+  } else {
+    try {
+      const students = JSON.parse(existingStudentData);
+      let migrated = false;
+      students.forEach(s => {
+        if (s.email && s.email.endsWith('@fccollege.edu.pk') && !s.email.endsWith('@formanite.fccollege.edu.pk')) {
+          s.email = s.email.replace('@fccollege.edu.pk', '@formanite.fccollege.edu.pk');
+          migrated = true;
+        }
+      });
+      if (migrated) {
+        saveStudents(students);
+      }
+    } catch (e) {
+      saveStudents(DEFAULT_STUDENTS);
+    }
   }
+
+  // Also migrate currentUser in localStorage if needed
+  const activeUserData = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
+  if (activeUserData) {
+    try {
+      const activeUser = JSON.parse(activeUserData);
+      if (activeUser.email && activeUser.email.endsWith('@fccollege.edu.pk') && !activeUser.email.endsWith('@formanite.fccollege.edu.pk')) {
+        activeUser.email = activeUser.email.replace('@fccollege.edu.pk', '@formanite.fccollege.edu.pk');
+        localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(activeUser));
+      }
+    } catch (e) {}
+  }
+
   if (!localStorage.getItem(STORAGE_KEYS.ADMIN_DB)) {
     saveStaffAccounts(DEFAULT_STAFF);
   }

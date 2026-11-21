@@ -47,11 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // 2. Validate Email Domain: Must end with @fccollege.edu.pk
-      const requiredDomain = '@fccollege.edu.pk';
-      if (!rawEmail.endsWith(requiredDomain)) {
+      // 2. Validate Email Domain: Must end with @formanite.fccollege.edu.pk or @fccollege.edu.pk (case-insensitive, trimmed)
+      const isStudentDomain = rawEmail.endsWith('@formanite.fccollege.edu.pk') || rawEmail.endsWith('@fccollege.edu.pk');
+      if (!isStudentDomain) {
         showAlert(
-          `<strong>Domain Verification Failed:</strong> Only official Forman Christian College University email addresses ending with <code>${requiredDomain}</code> are authorized to access Sportsly. Provided: <em>${rawEmail}</em>`,
+          `<strong>Domain Verification Failed:</strong> Only official Forman Christian College University student email addresses ending with <code>@formanite.fccollege.edu.pk</code> or <code>@fccollege.edu.pk</code> are authorized. External domains (e.g., Gmail, Yahoo) are not permitted. Provided: <em>${rawEmail}</em>`,
           'error'
         );
         emailInput.focus();
@@ -69,11 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // 4. Look up Student in localStorage STUDENT DB
+      // 4. Look up Student in localStorage STUDENT DB by Roll_No (Primary Key)
       const students = getStudents();
-      const existingStudent = students.find(
-        s => s.email.toLowerCase() === rawEmail || s.rollNumber === rawRoll
-      );
+      const existingStudent = students.find(s => s.rollNumber === rawRoll);
 
       // Check for Disciplinary Hold
       if (existingStudent && existingStudent.disciplinaryHold === true) {
@@ -87,7 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let activeProfile = null;
 
       if (existingStudent) {
-        // Pre-seeded or existing student record found
+        // Pre-seeded or existing student record found (matched by Primary Key Roll_No)
+        // Keep active profile email in sync with the address used to log in
+        existingStudent.email = rawEmail;
+        saveStudents(students);
         activeProfile = { ...existingStudent };
       } else {
         // New active student registration with 1000 baseline Elo and 3/3 weekly booking hours
